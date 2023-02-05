@@ -1,9 +1,9 @@
-<p align="center"><img src="https://avatars.githubusercontent.com/u/119825865?s=200&v=4" width="200" alt="Murray Rothbot Logo" />
+<p align="center"><img style="border-radius: 50%" src="./murray.png" width="200" alt="Murray Rothbot Logo" />
 </p>
 
 ## Description
 
-This is a NestJS boilerplate repository to be used as base for new APIs in our project.
+Client Twitter repository to be used as base for new APIs in our project.
 
 ## Installation
 
@@ -46,10 +46,6 @@ $ npm run clean
 # check for dependencies updates
 $ npm run check
 ```
-
-## Support
-
-RTFM
 
 ## License
 
