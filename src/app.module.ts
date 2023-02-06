@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
-import { SampleModule } from './domain/sample/sample.module'
 import config from './config/env.config'
+import { TwitterModule } from './domain/twitter/twitter.module'
 
 @Module({
   imports: [
@@ -11,7 +11,7 @@ import config from './config/env.config'
       isGlobal: true,
       load: [config],
     }),
-    SampleModule,
+    TwitterModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -21,7 +21,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "check": "npx npm-check -u -s",
-    "prepare": "husky install"
+    "prepare": ""
   },
   "dependencies": {
     "@nestjs/axios": "1.0.0",
@@ -37,7 +37,8 @@
     "i18next-http-middleware": "3.2.1",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
-    "rxjs": "7.6.0"
+    "rxjs": "7.6.0",
+    "twitter-api-v2": "^1.14.1"
   },
   "devDependencies": {
     "@nestjs/cli": "9.1.5",
