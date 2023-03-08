@@ -15,7 +15,7 @@ export class TwitterController {
       accessToken: this.twitterAccessTokenKey,
       accessSecret: this.twitterAccessTokenSecret,
     })
-    this.postTweet()
+    this.postPrice()
   }
 
   clientTwitter = null
@@ -25,11 +25,16 @@ export class TwitterController {
   twitterAccessTokenKey: string = this.cfgService.get<string>('TWITTER_ACCESS_TOKEN_KEY')
   twitterAccessTokenSecret: string = this.cfgService.get<string>('TWITTER_ACCESS_TOKEN_SECRET')
 
-  async postTweet() {
-    try {
-      await this.twitterService.postPrices(this.clientTwitter)
-    } catch (error) {
-      console.log(error)
-    }
+  // tweet price
+  postPrice() {
+    this.twitterService.postPrices(this.clientTwitter)
   }
+
+  // tweet ln stats
+
+  // tweet fees
+
+  // tweet blockchain info
+
+  // tweet op_return
 }
