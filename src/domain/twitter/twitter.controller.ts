@@ -15,7 +15,7 @@ export class TwitterController {
       accessToken: this.twitterAccessTokenKey,
       accessSecret: this.twitterAccessTokenSecret,
     })
-    this.postFees()
+    this.postDifficulty()
   }
 
   clientTwitter = null
@@ -41,7 +41,15 @@ export class TwitterController {
     this.twitterService.postFees(this.clientTwitter)
   }
 
-  // tweet blockchain info
+  // tweet LN Top Nodes
+  postLnTop() {
+    this.twitterService.postLnTop(this.clientTwitter)
+  }
+
+  // tweet difficulty
+  postDifficulty() {
+    this.twitterService.postDifficulty(this.clientTwitter)
+  }
 
   // tweet op_return
 }

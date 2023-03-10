@@ -14,7 +14,7 @@ export class TwitterService {
         lnStats.data.fields
 
       message += `
-Lightning Network 🌩️
+${lnStats.data.title}
 
 ${nodes.description} ${nodes.value}
 ${clearNet.description} - ${clearNet.value}
@@ -32,8 +32,9 @@ ${avgBaseFee.description} - ${avgBaseFee.value}
   }
 
   async postPrices(clientTwitter: any) {
-    let message = ''
     const prices = await this.murrayService.getPrices()
+    let message = `${prices.data.title}
+`
 
     if (prices.data?.fields) {
       Object.keys(prices.data.fields).forEach((key) => {
@@ -41,15 +42,14 @@ ${avgBaseFee.description} - ${avgBaseFee.value}
         const values = price.value.split('\n')
 
         message += `
-${price.description} 📊
-
- ${values[0]}
+${price.description}
+${values[0]}
 ${values[1]}
 
 `
       })
-
-      console.log(`${message} #MurrayRothbotPriceAlerts #Bitcoin`)
+      message += `#MurrayRothbotPricesReport #Bitcoin`
+      console.log(message)
       // await this.clientTwitter.v1.tweet(message)
     }
   }
@@ -61,7 +61,7 @@ ${values[1]}
       const { fastestFee, halfHourFee, hourFee, economy, minimum } = fees.data.fields
       console.log(fees.data?.fields)
       message += `
-Bitcoin Fees 💸
+${fees.data.title}
 
 ${fastestFee.description} ${fastestFee.value}
 ${halfHourFee.description} - ${halfHourFee.value}
@@ -71,6 +71,42 @@ ${minimum.description} - ${minimum.value}
 
 `
       message += `#MurrayRothbotFeesReport #Bitcoin`
+      console.log(message)
+    }
+  }
+
+  async postLnTop(clientTwitter: any) {
+    let message = ''
+    const lnTop = await this.murrayService.getLightingTop()
+    if (lnTop.data?.fields) {
+      message += `
+${lnTop.data.title}
+
+${lnTop.data.fields.topByCapacity.description} 
+
+${lnTop.data.fields.topByCapacity.value.node0.description}
+${lnTop.data.fields.topByCapacity.value.node0.value}
+
+${lnTop.data.fields.topByCapacity.value.node1.description}
+${lnTop.data.fields.topByCapacity.value.node1.value}
+
+${lnTop.data.fields.topByCapacity.value.node2.description}
+${lnTop.data.fields.topByCapacity.value.node2.value}
+
+
+${lnTop.data.fields.topByChannels.description} 
+
+${lnTop.data.fields.topByChannels.value.node0.description}
+${lnTop.data.fields.topByChannels.value.node0.value}
+
+${lnTop.data.fields.topByChannels.value.node1.description}
+${lnTop.data.fields.topByChannels.value.node1.value}
+
+${lnTop.data.fields.topByChannels.value.node2.description}
+${lnTop.data.fields.topByChannels.value.node2.value}
+
+`
+      message += `#Bitcoin`
       console.log(message)
     }
   }
