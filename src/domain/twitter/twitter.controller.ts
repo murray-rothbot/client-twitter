@@ -15,7 +15,7 @@ export class TwitterController {
       accessToken: this.twitterAccessTokenKey,
       accessSecret: this.twitterAccessTokenSecret,
     })
-    this.postDifficulty()
+    this.postMarketcap()
   }
 
   clientTwitter = null
@@ -49,6 +49,10 @@ export class TwitterController {
   // tweet difficulty
   postDifficulty() {
     this.twitterService.postDifficulty(this.clientTwitter)
+  }
+
+  postMarketcap() {
+    this.twitterService.postMarketcap(this.clientTwitter)
   }
 
   // tweet op_return

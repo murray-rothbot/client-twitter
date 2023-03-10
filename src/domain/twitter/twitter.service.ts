@@ -161,4 +161,27 @@ ${difficulty.data.fields.previousChange.description} - ${
       console.log(message)
     }
   }
+
+  async postMarketcap(clientTwitter: any) {
+    let message = ''
+    const marketCap = await this.murrayService.getMarketCap()
+
+    if (marketCap.data?.fields) {
+      message += `
+${marketCap.data.title}
+
+${marketCap.data.fields.btcusd.value.price.description} - ${marketCap.data.fields.btcusd.value.price.value}
+${marketCap.data.fields.btcusd.value.satsPerFiat.description} - ${marketCap.data.fields.btcusd.value.satsPerFiat.value}
+${marketCap.data.fields.btcusd.value.marketCap.description} - ${marketCap.data.fields.btcusd.value.marketCap.value}
+
+
+${marketCap.data.fields.btcbrl.value.price.description} - ${marketCap.data.fields.btcbrl.value.price.value}
+${marketCap.data.fields.btcbrl.value.satsPerFiat.description} - ${marketCap.data.fields.btcbrl.value.satsPerFiat.value}
+${marketCap.data.fields.btcbrl.value.marketCap.description} - ${marketCap.data.fields.btcbrl.value.marketCap.value}
+
+`
+      message += `#Bitcoin #MarketCap`
+      console.log(message)
+    }
+  }
 }
