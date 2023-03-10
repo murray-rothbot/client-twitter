@@ -110,4 +110,55 @@ ${lnTop.data.fields.topByChannels.value.node2.value}
       console.log(message)
     }
   }
+
+  //format date to dd/mm/yyyy
+  formatDate = (date: Date) => {
+    const day = date.getDate()
+    const month = date.getMonth() + 1
+    const year = date.getFullYear()
+    return `${day}/${month}/${year}`
+  }
+
+  async postDifficulty(clientTwitter: any) {
+    let message = ''
+    const difficulty = await this.murrayService.getDifficulty()
+
+    let progressMessage = ''
+    const currentProgress = difficulty.data.fields.currentProgress.value.toFixed(2)
+
+    let i = 0
+    while (i <= 100) {
+      progressMessage += '▓'
+      if (currentProgress < i) {
+        progressMessage += '░'
+      }
+
+      i += 10
+    }
+    progressMessage += ` ${currentProgress}%`
+
+    if (difficulty.data?.fields) {
+      message += `
+${difficulty.data.title}
+
+${difficulty.data.fields.currentProgress.description}
+${progressMessage}
+
+
+${difficulty.data.fields.estimatedDate.description} - ${this.formatDate(
+        new Date(difficulty.data.fields.estimatedDate.value),
+      )}
+
+${difficulty.data.fields.estimateChange.description} - ${
+        difficulty.data.fields.estimateChange.value
+      }
+${difficulty.data.fields.previousChange.description} - ${
+        difficulty.data.fields.previousChange.value
+      }
+
+`
+      message += `#Bitcoin #DifficultyAjustment`
+      console.log(message)
+    }
+  }
 }
