@@ -15,7 +15,7 @@ export class TwitterController {
       accessToken: this.twitterAccessTokenKey,
       accessSecret: this.twitterAccessTokenSecret,
     })
-    this.postPrice()
+    this.postLn()
   }
 
   clientTwitter = null
@@ -26,11 +26,15 @@ export class TwitterController {
   twitterAccessTokenSecret: string = this.cfgService.get<string>('TWITTER_ACCESS_TOKEN_SECRET')
 
   // tweet price
+
   postPrice() {
     this.twitterService.postPrices(this.clientTwitter)
   }
 
   // tweet ln stats
+  postLn() {
+    this.twitterService.postLn(this.clientTwitter)
+  }
 
   // tweet fees
 
