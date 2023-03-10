@@ -26,7 +26,7 @@ ${avgFee.description} - ${avgFee.value}
 ${avgBaseFee.description} - ${avgBaseFee.value}
 
 `
-      message += `#MurrayRothbotLNStats`
+      message += `#MurrayRothbotLNStats #Bitcoin`
       console.log(message)
     }
   }
@@ -49,8 +49,29 @@ ${values[1]}
 `
       })
 
-      console.log(`${message} #MurrayRothbotPriceAlerts`)
+      console.log(`${message} #MurrayRothbotPriceAlerts #Bitcoin`)
       // await this.clientTwitter.v1.tweet(message)
+    }
+  }
+
+  async postFees(clientTwitter: any) {
+    let message = ''
+    const fees = await this.murrayService.getFee()
+    if (fees.data?.fields) {
+      const { fastestFee, halfHourFee, hourFee, economy, minimum } = fees.data.fields
+      console.log(fees.data?.fields)
+      message += `
+Bitcoin Fees 💸
+
+${fastestFee.description} ${fastestFee.value}
+${halfHourFee.description} - ${halfHourFee.value}
+${hourFee.description} - ${hourFee.value}
+${economy.description} - ${economy.value}
+${minimum.description} - ${minimum.value}
+
+`
+      message += `#MurrayRothbotFeesReport #Bitcoin`
+      console.log(message)
     }
   }
 }
