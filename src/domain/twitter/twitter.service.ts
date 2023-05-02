@@ -6,7 +6,7 @@ export class TwitterService {
   private readonly logger = new Logger(TwitterService.name)
   constructor(private readonly murrayService: MurrayServiceRepository) {}
 
-  async postLn(clientTwitter: any) {
+  async postLn(clientTwitter: any, consoleMode: boolean) {
     let message = ''
     const lnStats = await this.murrayService.getLightingStatistics()
     if (lnStats.data?.fields) {
@@ -27,11 +27,15 @@ ${avgBaseFee.description} - ${avgBaseFee.value}
 
 `
       message += `#MurrayRothbotLNStats #Bitcoin`
-      console.log(message)
+      if (consoleMode) {
+        console.log(message)
+      } else {
+        await clientTwitter.v1.tweet(message)
+      }
     }
   }
 
-  async postPrices(clientTwitter: any) {
+  async postPrices(clientTwitter: any, consoleMode: boolean) {
     const prices = await this.murrayService.getPrices()
     let message = `${prices.data.title}
 `
@@ -49,12 +53,15 @@ ${values[1]}
 `
       })
       message += `#MurrayRothbotPricesReport #Bitcoin`
-      console.log(message)
-      // await this.clientTwitter.v1.tweet(message)
+      if (consoleMode) {
+        console.log(message)
+      } else {
+        await clientTwitter.v1.tweet(message)
+      }
     }
   }
 
-  async postFees(clientTwitter: any) {
+  async postFees(clientTwitter: any, consoleMode: boolean) {
     let message = ''
     const fees = await this.murrayService.getFee()
     if (fees.data?.fields) {
@@ -71,11 +78,15 @@ ${minimum.description} - ${minimum.value}
 
 `
       message += `#MurrayRothbotFeesReport #Bitcoin`
-      console.log(message)
+      if (consoleMode) {
+        console.log(message)
+      } else {
+        await clientTwitter.v1.tweet(message)
+      }
     }
   }
 
-  async postLnTop(clientTwitter: any) {
+  async postLnTop(clientTwitter: any, consoleMode: boolean) {
     let message = ''
     const lnTop = await this.murrayService.getLightingTop()
     if (lnTop.data?.fields) {
@@ -107,7 +118,11 @@ ${lnTop.data.fields.topByChannels.value.node2.value}
 
 `
       message += `#Bitcoin`
-      console.log(message)
+      if (consoleMode) {
+        console.log(message)
+      } else {
+        await clientTwitter.v1.tweet(message)
+      }
     }
   }
 
@@ -119,7 +134,7 @@ ${lnTop.data.fields.topByChannels.value.node2.value}
     return `${day}/${month}/${year}`
   }
 
-  async postDifficulty(clientTwitter: any) {
+  async postDifficulty(clientTwitter: any, consoleMode: boolean) {
     let message = ''
     const difficulty = await this.murrayService.getDifficulty()
 
@@ -158,11 +173,15 @@ ${difficulty.data.fields.previousChange.description} - ${
 
 `
       message += `#Bitcoin #DifficultyAjustment`
-      console.log(message)
+      if (consoleMode) {
+        console.log(message)
+      } else {
+        await clientTwitter.v1.tweet(message)
+      }
     }
   }
 
-  async postMarketcap(clientTwitter: any) {
+  async postMarketcap(clientTwitter: any, consoleMode: boolean) {
     let message = ''
     const marketCap = await this.murrayService.getMarketCap()
 
@@ -181,7 +200,11 @@ ${marketCap.data.fields.btcbrl.value.marketCap.description} - ${marketCap.data.f
 
 `
       message += `#Bitcoin #MarketCap`
-      console.log(message)
+      if (consoleMode) {
+        console.log(message)
+      } else {
+        await clientTwitter.v1.tweet(message)
+      }
     }
   }
 }
