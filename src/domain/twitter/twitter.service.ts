@@ -4,7 +4,16 @@ import { MurrayServiceRepository } from 'src/repositories'
 @Injectable()
 export class TwitterService {
   private readonly logger = new Logger(TwitterService.name)
+
   constructor(private readonly murrayService: MurrayServiceRepository) {}
+
+  async postTweet(clientTwitter: any, tweet: any, consoleMode: boolean) {
+    if (consoleMode) {
+      console.log(tweet)
+    } else {
+      await clientTwitter.v2.tweet(tweet)
+    }
+  }
 
   async postLn(clientTwitter: any, consoleMode: boolean) {
     let message = ''
@@ -30,7 +39,7 @@ ${avgBaseFee.description} - ${avgBaseFee.value}
       if (consoleMode) {
         console.log(message)
       } else {
-        await clientTwitter.v1.tweet(message)
+        await this.postTweet(clientTwitter, message, consoleMode)
       }
     }
   }
@@ -56,7 +65,7 @@ ${values[1]}
       if (consoleMode) {
         console.log(message)
       } else {
-        await clientTwitter.v1.tweet(message)
+        await this.postTweet(clientTwitter, message, consoleMode)
       }
     }
   }
@@ -66,7 +75,6 @@ ${values[1]}
     const fees = await this.murrayService.getFee()
     if (fees.data?.fields) {
       const { fastestFee, halfHourFee, hourFee, economy, minimum } = fees.data.fields
-      console.log(fees.data?.fields)
       message += `
 ${fees.data.title}
 
@@ -81,7 +89,7 @@ ${minimum.description} - ${minimum.value}
       if (consoleMode) {
         console.log(message)
       } else {
-        await clientTwitter.v1.tweet(message)
+        await this.postTweet(clientTwitter, message, consoleMode)
       }
     }
   }
@@ -121,7 +129,7 @@ ${lnTop.data.fields.topByChannels.value.node2.value}
       if (consoleMode) {
         console.log(message)
       } else {
-        await clientTwitter.v1.tweet(message)
+        await this.postTweet(clientTwitter, message, consoleMode)
       }
     }
   }
@@ -176,7 +184,7 @@ ${difficulty.data.fields.previousChange.description} - ${
       if (consoleMode) {
         console.log(message)
       } else {
-        await clientTwitter.v1.tweet(message)
+        await this.postTweet(clientTwitter, message, consoleMode)
       }
     }
   }
@@ -203,7 +211,7 @@ ${marketCap.data.fields.btcbrl.value.marketCap.description} - ${marketCap.data.f
       if (consoleMode) {
         console.log(message)
       } else {
-        await clientTwitter.v1.tweet(message)
+        await this.postTweet(clientTwitter, message, consoleMode)
       }
     }
   }
