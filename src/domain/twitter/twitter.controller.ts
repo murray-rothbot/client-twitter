@@ -48,11 +48,11 @@ export class TwitterController {
   }
 
   // tweet LN Top Nodes
-  @Cron(CronExpression.EVERY_DAY_AT_9AM)
-  @Cron(CronExpression.EVERY_DAY_AT_9PM)
-  postLnTop() {
-    this.twitterService.postLnTop(this.clientTwitter, this.consoleMode)
-  }
+  // @Cron(CronExpression.EVERY_DAY_AT_9AM)
+  // @Cron(CronExpression.EVERY_DAY_AT_9PM)
+  // postLnTop() {
+  //   this.twitterService.postLnTop(this.clientTwitter, this.consoleMode)
+  // }
 
   // tweet difficulty
   @Cron(CronExpression.EVERY_DAY_AT_10AM)
