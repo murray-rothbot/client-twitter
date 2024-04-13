@@ -244,7 +244,7 @@ const postHalving = async ({
       message += `${result.data.data.fields.daysUntilHalving.description}: ${result.data.data.fields.daysUntilHalving.value}\n`;
       message += `${
         result.data.data.fields.nextHalvingDate.description
-      }: ${formatDateTime(
+      }: ${formatDate(
         new Date(result.data.data.fields.nextHalvingDate.value)
       )}\n`;
       message += `${result.data.data.fields.halvingEra.description}: ${result.data.data.fields.halvingEra.value}\n\n`;
