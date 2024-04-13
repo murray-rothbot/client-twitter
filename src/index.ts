@@ -127,7 +127,7 @@ const postFees = async ({ clientTwitter }: { clientTwitter: TwitterApi }) => {
       message += `🐢 +30 min : ${halfHourFee.value.replace("vByte", "vB")}\n`;
       message += `🐌 +60 min : ${hourFee.value.replace("vByte", "vB")}\n`;
       message += `🦥 +90 min : ${economy.value.replace("vByte", "vB")}\n\n`;
-      message += `🔻 Purge Limit : ${minimum.value.replace("vByte", "vB")}\n\n`;
+      message += `🔥 Purge Limit : ${minimum.value.replace("vByte", "vB")}\n\n`;
 
       message += `#Bitcoin #fees`;
 
