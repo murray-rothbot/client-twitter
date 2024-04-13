@@ -1,10 +1,3 @@
-node_modules
-coverage
-.vscode/*
-.DS_Store
+/node_modules
+/dist
 .env
-dist
-.npmrc
-.tool-versions
-.yarn-error.log
-.yarn.lock
