@@ -1,9 +1,9 @@
-import { Prices } from "./prices";
-import { LightningNetwork } from "./lightningNetwork";
-import { Fees } from "./fees";
-import { Difficulty } from "./difficulty";
-import { MarketCap } from "./marketCap";
-import { Halving } from "./halving";
+import { Prices } from "./_prices";
+import { LightningNetwork } from "./_lightningNetwork";
+import { Fees } from "./_fees";
+import { Difficulty } from "./_difficulty";
+import { MarketCap } from "./_marketCap";
+import { Halving } from "./_halving";
 
 export const Tweets = {
   Prices,

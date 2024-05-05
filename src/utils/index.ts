@@ -1,11 +1,9 @@
-import { formatDate } from "./formatDate";
-import { postTweet } from "./postTweet";
-import { startCron } from "./startCron";
-import { startDiscord } from "./startDiscord";
+import { createCron } from "./_createCron";
+import { formatDate } from "./_formatDate";
+import { postTweet } from "./_postTweet";
 
 export const Utils = {
   formatDate,
   postTweet,
-  startCron,
-  startDiscord,
+  createCron,
 };

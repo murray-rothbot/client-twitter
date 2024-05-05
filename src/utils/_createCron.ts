@@ -1,6 +1,6 @@
 import { CronJob } from "cron";
 
-export const startCron = async ({
+export const createCron = async ({
   cron,
   action,
 }: {
