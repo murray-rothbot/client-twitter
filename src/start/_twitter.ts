@@ -7,7 +7,7 @@ const twitterConsumerSecret = `${process.env.TWITTER_CONSUMER_SECRET}`;
 const twitterAccessTokenKey = `${process.env.TWITTER_ACCESS_TOKEN_KEY}`;
 const twitterAccessTokenSecret = `${process.env.TWITTER_ACCESS_TOKEN_SECRET}`;
 
-export const Twitter = async () => {
+export const Twitter = async (): Promise<TwitterApi> => {
   return new TwitterApi({
     appKey: twitterConsumerKey,
     appSecret: twitterConsumerSecret,

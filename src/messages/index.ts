@@ -5,7 +5,7 @@ import { Difficulty } from "./_difficulty";
 import { MarketCap } from "./_marketCap";
 import { Halving } from "./_halving";
 
-export const Tweets = {
+export const Messages = {
   Prices,
   LightningNetwork,
   Fees,

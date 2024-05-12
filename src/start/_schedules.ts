@@ -1,19 +1,18 @@
 import { TwitterApi } from "twitter-api-v2";
-import { Tweets } from "../tweets";
+
+import { Messages } from "../messages";
 import { Utils } from "../utils";
 
-export const Schedules = async ({
-  client,
-}: {
-  client: TwitterApi;
-}): Promise<void> => {
-  Object.keys(Tweets).forEach((key) => {
-    const schedule = Tweets[key as keyof typeof Tweets];
+type Props = { client: TwitterApi };
+
+export const Schedules = async ({ client }: Props): Promise<void> => {
+  Object.keys(Messages).forEach((key) => {
+    const schedule = Messages[key as keyof typeof Messages];
 
     if (schedule) {
       Utils.createCron({
         cron: schedule.cron,
-        action: () => schedule.action({ clientTwitter: client }),
+        action: () => schedule.action({ client }),
       });
     }
   });
